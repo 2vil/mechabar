@@ -63,33 +63,33 @@ check-updates() {
 }
 
 update-packages() {
-	printf "\n%bUpdating pacman packages...%b\n" "$BLUE" "$RESET"
+ 	printf "\n%bMise à jour des paquets pacman...%b\n" "$BLUE" "$RESET"
 	sudo pacman -Syu
 
 	if [[ -n $helper ]]; then
-		printf "\n%bUpdating AUR packages...%b\n" "$BLUE" "$RESET"
+ 		printf "\n%bMise à jour des paquets AUR...%b\n" "$BLUE" "$RESET"
 		command "$helper" -Syu
 	fi
 
-	notify-send "Update Complete" -i "package-install"
+ 	notify-send "Mise à jour terminée" -i "package-install"
 
-	printf "\n%bUpdate Complete!%b\n" "$GREEN" "$RESET"
+ 	printf "\n%bMise à jour terminée !%b\n" "$GREEN" "$RESET"
 	read -rsn 1 -p "Press any key to exit..."
 }
 
 display-module() {
 	if [[ $success == false ]]; then
-		echo "{ \"text\": \"󰒑\", \"tooltip\": \"Cannot fetch updates. Right-click to retry.\" }"
+ 		echo "{ \"text\": \"󰒑\", \"tooltip\": \"Impossible de récupérer les mises à jour. Clic droit pour réessayer.\" }"
 		return 0
 	fi
 
-	local tooltip="<b>Official</b>: $pacman"
-	if [[ -n $helper ]]; then
-		tooltip+="\n<b>AUR($helper)</b>: $aur"
-	fi
+ 	local tooltip="<b>Officiel</b>: $pacman"
+ 	if [[ -n $helper ]]; then
+ 		tooltip+="\n<b>AUR($helper)</b>: $aur"
+ 	fi
 
 	if ((pacman + aur == 0)); then
-		echo "{ \"text\": \"󰸟\", \"tooltip\": \"No updates available\" }"
+ 		echo "{ \"text\": \"󰸟\", \"tooltip\": \"Aucune mise à jour disponible\" }"
 	else
 		echo "{ \"text\": \"󰄠\", \"tooltip\": \"$tooltip\" }"
 	fi
@@ -104,7 +104,7 @@ main() {
 			display-module
 			;;
 		*)
-			printf "%bChecking for updates...%b" "$BLUE" "$RESET"
+ 		printf "%bVérification des mises à jour...%b" "$BLUE" "$RESET"
 			check-updates
 			update-packages
 			pkill -RTMIN+1 waybar

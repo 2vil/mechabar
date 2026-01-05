@@ -32,7 +32,7 @@ ensure-enabled() {
 
 	local i new_state
 	for ((i = 1; i <= TIMEOUT; i++)); do
-		printf "\rEnabling Wi-Fi... (%d/%d)" $i $TIMEOUT
+ 		printf "\rActivation du Wi-Fi... (%d/%d)" $i $TIMEOUT
 
 		new_state=$(nmcli -t -f STATE general)
 		if [[ $new_state != "connected (local only)" ]]; then
@@ -42,7 +42,7 @@ ensure-enabled() {
 		sleep 1
 	done
 
-	notify-send "Wi-Fi Enabled" -i "network-wireless-on" \
+ 	notify-send "Wi-Fi activé" -i "network-wireless-on" \
 		-h string:x-canonical-private-synchronous:network
 }
 
@@ -51,7 +51,7 @@ get-network-list() {
 
 	local i
 	for ((i = 1; i <= TIMEOUT; i++)); do
-		printf "\rScanning for networks... (%d/%d)" $i $TIMEOUT
+ 		printf "\rRecherche de réseaux... (%d/%d)" $i $TIMEOUT
 
 		list=$(timeout 1 nmcli device wifi list)
 		networks=$(tail -n +2 <<< "$list" | awk '$2 != "--"')
@@ -61,10 +61,10 @@ get-network-list() {
 		fi
 	done
 
-	printf "\n%bScanning stopped.%b\n\n" "$RED" "$RESET"
+ 	printf "\n%bRecherche arrêtée.%b\n\n" "$RED" "$RESET"
 
 	if [[ -z $networks ]]; then
-		notify-send "Wi-Fi" "No networks found" -i "package-broken"
+ 		notify-send "Wi-Fi" "Aucun réseau trouvé" -i "package-broken"
 		return 1
 	fi
 }
@@ -75,7 +75,7 @@ select-network() {
 
 	local options=(
 		"--border=sharp"
-		"--border-label= Wi-Fi Networks "
+ 		"--border-label= Réseaux Wi-Fi "
 		"--ghost=Search"
 		"--header=$header"
 		"--height=~100%"
@@ -91,7 +91,7 @@ select-network() {
 	case $bssid in
 		"") return 1 ;;
 		"*")
-			notify-send "Wi-Fi" "Already connected to this network" \
+ 			notify-send "Wi-Fi" "Déjà connecté à ce réseau" \
 				-i "package-install"
 			return 1
 			;;
@@ -99,14 +99,14 @@ select-network() {
 }
 
 connect() {
-	printf "Connecting...\n"
+ 	printf "Connexion...\n"
 
 	if ! nmcli -a device wifi connect "$bssid"; then
-		notify-send "Wi-Fi" "Failed to connect" -i "package-purge"
+ 		notify-send "Wi-Fi" "Échec de la connexion" -i "package-purge"
 		return 1
 	fi
 
-	notify-send "Wi-Fi" "Successfully connected" -i "package-install"
+ 	notify-send "Wi-Fi" "Connexion réussie" -i "package-install"
 }
 
 main() {

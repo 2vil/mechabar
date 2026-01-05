@@ -18,8 +18,8 @@
 		// "on-scroll-down":
 		// "smooth-scrolling-threshold":
 		// "tooltip":
-		"tooltip-format-activated": "<b>Idle Inhibitor</b>: Activated",
-		"tooltip-format-deactivated": "<b>Idle Inhibitor</b>: Deactivated",
+		"tooltip-format-activated": "<b>Inhibiteur d'inactivité</b>: Activé",
+		"tooltip-format-deactivated": "<b>Inhibiteur d'inactivité</b>: Désactivé",
 		"start-activated": false
 		// "timeout":
 		// "menu":

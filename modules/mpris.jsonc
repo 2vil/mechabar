@@ -5,8 +5,8 @@
 		// "interval":
 		"format": "{player_icon} {title} - {artist}",
 		"format-paused": "{status_icon} {title} - {artist}",
-		"tooltip-format": "Playing: {title} - {artist}",
-		"tooltip-format-paused": "Paused: {title} - {artist}",
+		"tooltip-format": "Lecture: {title} - {artist}",
+		"tooltip-format-paused": "En pause: {title} - {artist}",
 		// "enable-tooltip-len-limits":
 		// "on-click":
 		// "on-click-middle":

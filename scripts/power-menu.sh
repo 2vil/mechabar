@@ -13,18 +13,18 @@ colors=()
 source ~/.config/waybar/scripts/fzf-colorizer.sh &> /dev/null || true
 
 main() {
-	local list=(
-		"Lock"
-		"Shutdown"
-		"Reboot"
-		"Logout"
-		"Hibernate"
-		"Suspend"
-	)
+ 	local list=(
+ 		"Verrouiller"
+ 		"Éteindre"
+ 		"Redémarrer"
+ 		"Déconnexion"
+ 		"Hibernation"
+ 		"Suspension"
+ 	)
 
 	local options=(
 		"--border=sharp"
-		"--border-label= Power Menu "
+ 		"--border-label= Menu d'alimentation "
 		"--height=~100%"
 		"--highlight-line"
 		"--no-input"
@@ -36,15 +36,15 @@ main() {
 	local selected
 	selected=$(printf "%s\n" "${list[@]}" | fzf "${options[@]}")
 
-	case $selected in
-		"Lock") loginctl lock-session ;;
-		"Shutdown") systemctl poweroff ;;
-		"Reboot") systemctl reboot ;;
-		"Logout") loginctl terminate-session "$XDG_SESSION_ID" ;;
-		"Hibernate") systemctl hibernate ;;
-		"Suspend") systemctl suspend ;;
-		*) exit 1 ;;
-	esac
+ 	case $selected in
+ 		"Verrouiller") loginctl lock-session ;;
+ 		"Éteindre") systemctl poweroff ;;
+ 		"Redémarrer") systemctl reboot ;;
+ 		"Déconnexion") loginctl terminate-session "$XDG_SESSION_ID" ;;
+ 		"Hibernation") systemctl hibernate ;;
+ 		"Suspension") systemctl suspend ;;
+ 		*) exit 1 ;;
+ 	esac
 }
 
 main

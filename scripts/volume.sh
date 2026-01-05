@@ -51,10 +51,10 @@ get-state() {
 	local state
 	state=$(pactl "get-$d_state" | awk '{print $2}')
 
-	case $state in
-		"yes") printf "Muted" ;;
-		"no") printf "Unmuted" ;;
-	esac
+ 	case $state in
+ 		"yes") printf "Muet" ;;
+ 		"no") printf "Non muet" ;;
+ 	esac
 }
 
 get-volume() {
